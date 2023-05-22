@@ -1,4 +1,5 @@
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -20,7 +21,7 @@ public class FishingRod {
         player = p;
         pl = plugin;
         im = p.getInventory().getItemInMainHand().getItemMeta();
-        //Persistent Data Handling ( first time using them)
+        //Persistent Data Handling aka NBT tags ( first time using them)
         c = im.getPersistentDataContainer();
 
         lureKey = new NamespacedKey(pl, "lure");
@@ -47,18 +48,22 @@ public class FishingRod {
         lure++;
         c.set(lureKey,PersistentDataType.INTEGER, lure);
         player.getInventory().getItemInMainHand().setItemMeta(im);
+        player.getInventory().getItemInMainHand().addUnsafeEnchantment(Enchantment.LURE,lure);
+        player.setLevel(player.getLevel()-30);
     }
     public void upgradeLuck() {
         if(luck>=5) return;
         luck++;
         c.set(luckKey,PersistentDataType.INTEGER, luck);
         player.getInventory().getItemInMainHand().setItemMeta(im);
+        player.setLevel(player.getLevel()-30);
     }
     public void upgradeDoubleCatch() {
         if(doubleCatch>=10) return;
         doubleCatch++;
         c.set(dCKey,PersistentDataType.INTEGER, doubleCatch);
         player.getInventory().getItemInMainHand().setItemMeta(im);
+        player.setLevel(player.getLevel()-30);
     }
 
     //Za Fishing Rod Getters

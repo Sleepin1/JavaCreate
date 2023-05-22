@@ -21,24 +21,18 @@ public class FishingCmds implements CommandExecutor {
             ItemStack i = p.getInventory().getItemInMainHand();
             if(p.getInventory().getItemInMainHand().getType() == Material.FISHING_ROD) {
                 FishingRod fr = new FishingRod(p, pl);
-                if(args.length == 0) {
+                if(args.length == 0) { //Lists the upgrades or attempts to upgrade the fishing rod
                     p.sendMessage(ChatColor.AQUA + "Lure: " + fr.getLure() + "\nLuck: " + fr.getLuck() + "\nDouble Catch: " + fr.getDoubleCatch());
-                } else if (p.getExpToLevel() > 30) {
+                } else if (p.getLevel() > 30) {
                     if (args[0].equalsIgnoreCase("lure")) {
                         fr.upgradeLure();
                         p.sendMessage(ChatColor.AQUA + "Your fishing rod was upgraded if it did not surpass limit!");
-                        p.setLevel(p.getLevel()-30);
                     }else if (args[0].equalsIgnoreCase("luck")) {
                         fr.upgradeLuck();
                         p.sendMessage(ChatColor.AQUA + "Your fishing rod was upgraded if it did not surpass limit!");
-                        p.getInventory().getItemInMainHand().addUnsafeEnchantment(Enchantment.LURE, fr.getLure());
-                        p.setLevel(p.getLevel()-30);
-
                     }else if (args[0].equalsIgnoreCase("double")) {
                         fr.upgradeDoubleCatch();
                         p.sendMessage(ChatColor.AQUA + "Your fishing rod was upgraded if it did not surpass limit!");
-                        p.setLevel(p.getLevel()-30);
-
                     }
                 } else {
                     p.sendMessage(ChatColor.AQUA + "You need 30exp to upgrade your fishing rod!");
