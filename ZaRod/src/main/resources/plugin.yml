@@ -1,0 +1,14 @@
+main: Main
+name: ZaRod
+version: 1.0
+author: Ryan Reasat
+api-version: 1.13
+description: --
+commands:
+  zarod:
+    description: Hi
+    aliases:
+      - zarod
+      - upgraderod
+      - upgrade
+      - rod
